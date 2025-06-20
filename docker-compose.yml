@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: fastapi_wiki
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: fastapi_wiki
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - wiki_network
+
+volumes:
+  postgres_data:
+
+networks:
+  wiki_network:
+    driver: bridge
